@@ -1,323 +1,415 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="slides-format" content="viewport" />
-  <title>Strategi Brand Jaket Casual</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <style type="text/tailwindcss">
-    @theme {
-      --color-bg: #18181B;
-      --color-bg-deep: #0f0f12;
-      --color-surface: #27272A;
-      --color-text: #F8FAFC;
-      --color-text-secondary: #D4D4D8;
-      --color-text-muted: #A1A1AA;
-      --color-accent-1: #F97316;
-      --color-accent-2: #14B8A6;
-      --color-accent-3: #FEF3C7;
-      --color-glass-bg: rgba(255,255,255,0.05);
-      --color-glass-border: rgba(255,255,255,0.10);
-      --color-vignette: rgba(0,0,0,0.45);
-      --font-display: 'Archivo Black', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-    }
-  </style>
+  <title>BILLES Brand Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root { --color-bg: #18181B; --color-text: #F8FAFC; --glow-color-rgb: 249,115,22; --color-glass-bg: rgba(255,255,255,0.05); --color-glass-border: rgba(255,255,255,0.10); --color-vignette: rgba(0,0,0,0.45); }
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { background: var(--color-bg); margin: 0; }
-    body { font-family: var(--font-body); color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
-    .deck { width: 100vw; height: 100vh; position: relative; }
-    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.95); transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none; overflow: hidden; }
-    .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
-    .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1180px; padding: clamp(1.5rem, 4vw, 4rem); }
-    .nav-controls { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: var(--color-glass-bg); backdrop-filter: blur(10px); padding: 10px 24px; border-radius: 40px; border: 1px solid var(--color-glass-border); }
-    .nav-btn { width: 40px; height: 40px; border: none; background: var(--color-glass-bg); color: #F97316; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
-    .slide-dots { display: flex; gap: 8px; }
-    .slide-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-glass-border); cursor: pointer; }
-    .slide-dots .dot.active { background: #F97316; transform: scale(1.25); }
-    .slide-counter { font-size: 0.8rem; color: #A1A1AA; min-width: 44px; text-align: center; }
-    .reveal { opacity: 0; transform: translateY(20px); }
-    .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .blob { position: absolute; border-radius: 50%; filter: blur(80px); animation: float-slow 12s ease-in-out infinite; }
-    .blob:nth-child(2) { animation: float-drift 16s ease-in-out infinite; }
-    .blob:nth-child(3) { animation: float-slow 18s ease-in-out infinite reverse; }
-    @keyframes float-slow { 0% { transform: translate(0,0) scale(1);} 25% { transform: translate(60px,-50px) scale(1.12);} 50% { transform: translate(-40px,40px) scale(0.9);} 75% { transform: translate(50px,20px) scale(1.08);} 100% { transform: translate(0,0) scale(1);} }
-    @keyframes float-drift { 0% { transform: translate(0,0) scale(1) rotate(0deg);} 33% { transform: translate(-50px,-60px) scale(1.15) rotate(3deg);} 66% { transform: translate(40px,30px) scale(0.88) rotate(-2deg);} 100% { transform: translate(0,0) scale(1) rotate(0deg);} }
-    @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-15px);} }
-    .slide::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); background-repeat:repeat; background-size:256px 256px; opacity:0.03; mix-blend-mode:overlay; }
-    .slide::after { content:''; position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at center, transparent 50%, var(--color-vignette) 100%); }
-    .mouse-spotlight { position:fixed; inset:0; z-index:99; pointer-events:none; }
-    .bar-track { height: 18px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg,#F97316,#14B8A6); }
-    .pillar { background: linear-gradient(180deg,#14B8A6,#F97316); border-radius: 10px 10px 0 0; width: 100%; }
-    .deco-shape { position:absolute; border-radius:999px; filter:blur(1px); opacity:0.12; z-index:1; pointer-events:none; }
-    .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.10); border-radius: 24px; }
-    .tiny { font-size: .8rem; line-height: 1.35; }
-    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+    :root {
+      --graphite-black: #111111;
+      --off-white: #F5F4EF;
+      --stone-grey: #707070;
+      --forest-green: #2D4739;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      background: var(--off-white);
+      color: var(--graphite-black);
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--stone-grey);
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+    }
+
+    .brand-name {
+      font-size: 32px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: var(--stone-grey);
+      margin-top: 4px;
+    }
+
+    h2 {
+      margin-top: 32px;
+      margin-bottom: 8px;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 6px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    p {
+      margin: 4px 0 10px;
+    }
+
+    ul {
+      margin: 4px 0 16px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .section {
+      padding: 16px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stone-grey);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .color-swatch {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
+
+    .color-box {
+      height: 72px;
+    }
+
+    .color-meta {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--stone-grey);
+    }
+
+    .code {
+      font-family: "SF Mono", Menlo, Monaco, monospace;
+      font-size: 12px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      border: 1px solid #e0e0e0;
+      font-size: 14px;
+    }
+
+    .manifesto {
+      background: #ffffff;
+      border-left: 4px solid var(--graphite-black);
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .small {
+      font-size: 13px;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .wrapper {
+        padding: 24px 16px;
+      }
+    }
   </style>
 </head>
 <body>
-<div class="mouse-spotlight"></div>
-<div class="deck">
-  <div class="slide active" data-slide="1">
-    <div class="gradient-mesh">
-      <div class="blob" style="width:520px;height:520px;top:-120px;right:-80px;background:#F97316;opacity:.14"></div>
-      <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:#14B8A6;opacity:.11"></div>
-      <div class="blob" style="width:220px;height:220px;top:40%;left:18%;background:#FEF3C7;opacity:.08"></div>
-    </div>
-    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1"></canvas>
-    <div class="content text-center">
-      <div class="text-[110px] mb-4 animate-[float_3s_ease-in-out_infinite] reveal">🧥</div>
-      <h1 class="font-display text-[clamp(2.7rem,6vw,5.2rem)] leading-none tracking-tight mb-5 bg-linear-to-br from-accent-1 via-accent-2 to-accent-3 bg-clip-text text-transparent reveal">Rancangan Strategi Brand Jaket</h1>
-      <p class="text-[clamp(.9rem,1.4vw,1.2rem)] uppercase tracking-[6px] text-text-muted reveal">Arah brand ala James Boogie, versi middle market</p>
-      <div class="mt-8 inline-flex rounded-full border border-glass-border bg-glass-bg px-5 py-2 text-sm text-text-secondary reveal">Target bahan parasut ringan + puring jaring, dengan target harga Rp250 ribuan</div>
-    </div>
-  </div>
+  <div class="wrapper">
+    <header>
+      <div class="brand-name">BILLES</div>
+      <div class="tagline">Built For Movement.</div>
+    </header>
 
-  <div class="slide" data-slide="2">
-    <div class="gradient-mesh"><div class="blob" style="width:360px;height:360px;top:-80px;right:-80px;background:#F97316;opacity:.08"></div><div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#14B8A6;opacity:.07"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Market intent</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Masalah yang mau disolve</h2>
-      <div class="grid grid-cols-3 gap-6 mt-6">
-        <div class="card p-7 hover:-translate-y-1 transition reveal"><div class="text-3xl mb-4">01</div><h3 class="font-bold text-xl mb-3">Premium look terlalu mahal</h3><p class="text-text-secondary">Referensi seperti James Boogie punya identitas pop-military dan military-inspired outerwear yang kuat, tetapi banyak item berada di level ratusan ribu atas sampai lebih tinggi.</p></div>
-        <div class="card p-7 hover:-translate-y-1 transition reveal"><div class="text-3xl mb-4">02</div><h3 class="font-bold text-xl mb-3">Pasar menengah butuh akses</h3><p class="text-text-secondary">Di marketplace, jaket casual pria dan outerwear dengan kisaran sekitar Rp200 ribu sampai Rp300 ribu tetap kompetitif untuk pembeli yang cari style harian.</p></div>
-        <div class="card p-7 hover:-translate-y-1 transition reveal"><div class="text-3xl mb-4">03</div><h3 class="font-bold text-xl mb-3">Gap ada di affordable premium</h3><p class="text-text-secondary">Posisi yang paling logis adalah menghadirkan siluet maskulin dan clean tactical look dengan kompleksitas produksi yang lebih rendah agar harga tetap masuk.</p></div>
+    <section class="section">
+      <h2>Brand Overview</h2>
+      <p>
+        BILLES adalah brand movement wear yang dirancang untuk mendukung aktivitas sehari-hari,
+        olahraga, perjalanan, dan eksplorasi.
+      </p>
+      <p>
+        Nama BILLES berasal dari bahasa Prancis yang berarti "kelereng", sebuah objek yang identik
+        dengan gerakan, momentum, dan kebebasan.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Vision & Mission</h2>
+      <h3>Vision</h3>
+      <p>
+        Menjadi brand movement wear pilihan bagi individu aktif yang membutuhkan apparel serbaguna
+        untuk berbagai aktivitas.
+      </p>
+
+      <h3>Mission</h3>
+      <ul>
+        <li>Menciptakan apparel yang nyaman digunakan dalam berbagai aktivitas.</li>
+        <li>Menggabungkan fungsi, kenyamanan, dan desain modern.</li>
+        <li>Mengurangi kebutuhan memiliki banyak jenis pakaian untuk aktivitas berbeda.</li>
+        <li>Mendorong gaya hidup aktif dan eksploratif.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Positioning</h2>
+      <p><strong>Brand Positioning:</strong> Performance Lifestyle Wear.</p>
+      <p>BILLES berada di antara:</p>
+      <div class="columns small">
+        <div>• Sportswear</div>
+        <div>• Outdoor Wear</div>
+        <div>• Travel Wear</div>
+        <div>• Daily Wear</div>
       </div>
-    </div>
-  </div>
+      <p class="small" style="margin-top:12px;">
+        BILLES bukan brand fashion. BILLES bukan brand hiking. BILLES bukan brand running.<br />
+        BILLES adalah brand apparel untuk bergerak.
+      </p>
+    </section>
 
-  <div class="slide" data-slide="3">
-    <div class="gradient-mesh"><div class="blob" style="width:340px;height:340px;top:8%;left:-70px;background:#14B8A6;opacity:.08"></div><div class="blob" style="width:280px;height:280px;bottom:-80px;right:-30px;background:#F97316;opacity:.08"></div></div>
-    <div class="deco-shape" data-speed="0.03" style="width:180px;height:180px;top:12%;right:8%;background:#14B8A6"></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Positioning</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Posisi brand yang disarankan</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div class="card p-8 reveal"><p class="text-sm uppercase tracking-[4px] text-text-muted mb-3">Core statement</p><div class="text-4xl font-display leading-tight mb-4">Premium look,<br/>middle price.</div><p class="text-text-secondary">Brand dijual sebagai menswear outerwear yang terlihat dewasa, rapi, dan berkarakter, tanpa masuk ke bahasa brand murah.</p></div>
-        <div class="grid grid-rows-3 gap-4">
-          <div class="card p-5 reveal"><div class="font-bold mb-2">Style code</div><div class="text-text-secondary">Clean military, urban outerwear, subtle tactical accents.</div></div>
-          <div class="card p-5 reveal"><div class="font-bold mb-2">Target user</div><div class="text-text-secondary">Pria 19–34, suka jaket statement tapi masih sensitif harga, belanja dominan di Shopee.</div></div>
-          <div class="card p-5 reveal"><div class="font-bold mb-2">Buying moment</div><div class="text-text-secondary">Daily wear, nongkrong, ngopi, kerja santai, hadiah kecil untuk diri sendiri.</div></div>
+    <section class="section">
+      <h2>Core Values</h2>
+      <div class="columns">
+        <div class="card">
+          <strong>Movement</strong><br />
+          Segala sesuatu dimulai dari gerakan.
+        </div>
+        <div class="card">
+          <strong>Versatility</strong><br />
+          Satu produk untuk banyak aktivitas.
+        </div>
+        <div class="card">
+          <strong>Functionality</strong><br />
+          Setiap detail memiliki tujuan.
+        </div>
+        <div class="card">
+          <strong>Simplicity</strong><br />
+          Desain bersih dan tidak berlebihan.
+        </div>
+        <div class="card">
+          <strong>Durability</strong><br />
+          Dibuat untuk penggunaan jangka panjang.
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="slide" data-slide="4">
-    <div class="gradient-mesh"><div class="blob" style="width:380px;height:380px;top:-100px;right:0;background:#F97316;opacity:.09"></div><div class="blob" style="width:250px;height:250px;bottom:-50px;left:10%;background:#FEF3C7;opacity:.07"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Audience</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Target persona utama</h2>
-      <div class="grid grid-cols-3 gap-6">
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">👨🏻‍💻</div><h3 class="font-bold text-xl mb-2">Young worker</h3><p class="tiny text-text-secondary">Usia 23–32, kerja hybrid, ingin jaket yang cocok dipakai dari meeting santai ke nongkrong malam.</p></div>
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">🛵</div><h3 class="font-bold text-xl mb-2">Urban mover</h3><p class="tiny text-text-secondary">Sering mobile, suka jaket ringan yang terlihat rapi, tidak terlalu outdoor, tapi tetap terasa teknikal.</p></div>
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">📱</div><h3 class="font-bold text-xl mb-2">Shopee browser</h3><p class="tiny text-text-secondary">Keputusan beli dipengaruhi thumbnail, warna netral, review, dan persepsi bahan yang terlihat mahal.</p></div>
+    <section class="section">
+      <h2>Brand Personality</h2>
+      <div class="columns">
+        <div class="card">
+          <strong>Functional</strong><br />
+          Mengutamakan fungsi dibanding tren.
+        </div>
+        <div class="card">
+          <strong>Modern</strong><br />
+          Bersih, relevan, dan kontemporer.
+        </div>
+        <div class="card">
+          <strong>Minimal</strong><br />
+          Tidak ramai dan tidak berlebihan.
+        </div>
+        <div class="card">
+          <strong>Premium</strong><br />
+          Material dan pengalaman yang berkualitas.
+        </div>
+        <div class="card">
+          <strong>Adventurous</strong><br />
+          Mendorong eksplorasi dan aktivitas.
+        </div>
       </div>
-      <div class="mt-6 card p-5 reveal"><span class="font-bold">Keyword psikologis:</span> ingin terlihat lebih dewasa, rapi, maskulin, dan “niat”, tanpa harus bayar harga premium atas.</div>
-    </div>
-  </div>
+    </section>
 
-  <div class="slide" data-slide="5">
-    <div class="gradient-mesh"><div class="blob" style="width:360px;height:360px;top:5%;left:-50px;background:#14B8A6;opacity:.07"></div><div class="blob" style="width:300px;height:300px;bottom:-80px;right:-60px;background:#F97316;opacity:.08"></div></div>
-    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1"></canvas>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Price architecture</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Struktur harga yang sehat</h2>
-      <div class="grid grid-cols-4 gap-5">
-        <div class="card p-6 text-center reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Entry</div><div class="text-3xl font-display mb-2">219K</div><div class="tiny text-text-secondary">Traffic builder</div></div>
-        <div class="card p-6 text-center reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Core</div><div class="text-3xl font-display mb-2">249K</div><div class="tiny text-text-secondary">Best volume</div></div>
-        <div class="card p-6 text-center reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Core+</div><div class="text-3xl font-display mb-2">269K</div><div class="tiny text-text-secondary">Sweet spot margin</div></div>
-        <div class="card p-6 text-center reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Upsell</div><div class="text-3xl font-display mb-2">299K</div><div class="tiny text-text-secondary">Premium variant</div></div>
+    <section class="section">
+      <h2>Audience & Archetype</h2>
+      <h3>Primary Audience</h3>
+      <p>Pria usia 25–40 tahun.</p>
+      <ul>
+        <li>Aktif bergerak</li>
+        <li>Menyukai olahraga</li>
+        <li>Menyukai traveling</li>
+        <li>Menyukai aktivitas outdoor</li>
+        <li>Menghargai produk multifungsi</li>
+      </ul>
+
+      <h3>Brand Archetype</h3>
+      <p><strong>Primary:</strong> Explorer</p>
+      <p><strong>Secondary:</strong> Creator</p>
+    </section>
+
+    <section class="section">
+      <h2>Visual Identity</h2>
+      <h3>Colors</h3>
+      <div class="grid-2">
+        <div class="color-swatch">
+          <div class="color-box" style="background: var(--graphite-black);"></div>
+          <div class="color-meta">
+            <div class="label">Primary Color</div>
+            <div>Graphite Black</div>
+            <div class="code">HEX: #111111</div>
+            <div class="code">RGB: 17, 17, 17</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: var(--off-white);"></div>
+          <div class="color-meta">
+            <div class="label">Secondary Color</div>
+            <div>Off White</div>
+            <div class="code">HEX: #F5F4EF</div>
+            <div class="code">RGB: 245, 244, 239</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: var(--stone-grey);"></div>
+          <div class="color-meta">
+            <div class="label">Accent Color</div>
+            <div>Stone Grey</div>
+            <div class="code">HEX: #707070</div>
+            <div class="code">RGB: 112, 112, 112</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: var(--forest-green);"></div>
+          <div class="color-meta">
+            <div class="label">Optional Accent</div>
+            <div>Forest Green</div>
+            <div class="code">HEX: #2D4739</div>
+            <div class="code">RGB: 45, 71, 57</div>
+          </div>
+        </div>
       </div>
-      <div class="grid grid-cols-2 gap-6 mt-6">
-        <div class="card p-6 reveal"><h3 class="font-bold mb-3">Prinsip pricing</h3><ul class="space-y-2 text-text-secondary"><li>- Jangan branding sebagai murah.</li><li>- Mainkan persepsi “lebih mahal dari harganya”.</li><li>- Sisakan ruang voucher dan promo marketplace.</li></ul></div>
-        <div class="card p-6 reveal"><h3 class="font-bold mb-3">SKU launch</h3><ul class="space-y-2 text-text-secondary"><li>- 1 hero product.</li><li>- 2–3 warna netral.</li><li>- 1 size curve yang aman untuk mayoritas buyer.</li></ul></div>
+    </section>
+
+    <section class="section">
+      <h2>Logo & Typography</h2>
+      <h3>Logo Philosophy</h3>
+      <p>
+        Logo menggunakan pendekatan wordmark dengan alasan: timeless, mudah diaplikasikan,
+        premium, mudah dikenali, dan fleksibel untuk ekspansi kategori.
+      </p>
+      <p><strong>Logo utama:</strong> BILLES</p>
+      <p><strong>Tagline:</strong> Built For Movement.</p>
+
+      <h3>Typography</h3>
+      <ul>
+        <li><strong>Logo Typeface:</strong> Manrope SemiBold</li>
+        <li><strong>Alternatif:</strong> General Sans SemiBold, Helvetica Neue</li>
+        <li><strong>Heading:</strong> General Sans</li>
+        <li><strong>Body:</strong> Inter</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Tone of Voice</h2>
+      <ul>
+        <li><strong>Confident:</strong> Tidak berlebihan.</li>
+        <li><strong>Clear:</strong> Mudah dipahami.</li>
+        <li><strong>Functional:</strong> Fokus pada manfaat.</li>
+        <li><strong>Inspirational:</strong> Mengajak bergerak tanpa terkesan menggurui.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Product Naming</h2>
+      <h3>Motion Collection</h3>
+      <p>Motion Pant · Motion Short · Motion Lite · Motion Pro</p>
+
+      <h3>Terrain Collection</h3>
+      <p>Terrain Pant · Terrain Short · Terrain Pro</p>
+
+      <h3>Court Collection</h3>
+      <p>Court Short · Court Pro</p>
+    </section>
+
+    <section class="section">
+      <h2>Packaging</h2>
+      <h3>Box</h3>
+      <ul>
+        <li>Graphite Black</li>
+        <li>White Logo</li>
+        <li>Minimal Layout</li>
+      </ul>
+
+      <h3>Hangtag</h3>
+      <p><strong>Front:</strong> BILLES</p>
+      <p><strong>Back:</strong> Built For Movement.</p>
+    </section>
+
+    <section class="section">
+      <h2>Photography Direction</h2>
+      <ul>
+        <li>Natural</li>
+        <li>Authentic</li>
+        <li>Movement Driven</li>
+        <li>Outdoor Urban Blend</li>
+      </ul>
+      <p><strong>Hindari:</strong> pose berlebihan, studio yang terlalu artifisial, warna terlalu ramai.</p>
+    </section>
+
+    <section class="section">
+      <h2>Brand Manifesto</h2>
+      <div class="manifesto">
+        <p>We believe movement is a fundamental part of life.</p>
+        <p>Movement is not limited to sports, trails, or training sessions.</p>
+        <p>It exists in every journey, every exploration, and every step forward.</p>
+        <p>
+          That's why we create apparel designed to move seamlessly across different environments
+          and activities.
+        </p>
+        <p>Functional. Versatile. Built to perform.</p>
+        <p>BILLES. Built For Movement.</p>
       </div>
-    </div>
+    </section>
   </div>
-
-  <div class="slide" data-slide="6">
-    <div class="gradient-mesh"><div class="blob" style="width:320px;height:320px;top:-50px;right:10%;background:#FEF3C7;opacity:.08"></div><div class="blob" style="width:280px;height:280px;bottom:-60px;left:-50px;background:#14B8A6;opacity:.07"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Product strategy</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">3 model awal yang paling feasible</h2>
-      <div class="grid grid-cols-3 gap-6">
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">A</div><h3 class="font-bold text-xl mb-2">Utility overshirt</h3><p class="tiny text-text-secondary mb-3">Paling aman untuk harga Rp219K–Rp249K. Siluet clean, dua pocket depan, bahan twill atau canvas ringan.</p><div class="text-sm text-accent-2">Best untuk entry volume</div></div>
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">B</div><h3 class="font-bold text-xl mb-2">Coach jacket clean</h3><p class="tiny text-text-secondary mb-3">Mudah terlihat modern dan rapi. Cocok pakai nylon matte atau taslan premium dengan detail minimal.</p><div class="text-sm text-accent-2">Best untuk image + margin</div></div>
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">C</div><h3 class="font-bold text-xl mb-2">Work jacket ringan</h3><p class="tiny text-text-secondary mb-3">Paling dekat ke rasa military-inspired. Gunakan potongan boxy ringan dengan zipper depan dan satu detail fungsional.</p><div class="text-sm text-accent-2">Best untuk statement piece</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="7">
-    <div class="gradient-mesh"><div class="blob" style="width:390px;height:390px;top:-110px;right:-70px;background:#F97316;opacity:.09"></div><div class="blob" style="width:240px;height:240px;bottom:-70px;left:0;background:#14B8A6;opacity:.07"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Design rules</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">DNA desain yang wajib dijaga</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div class="card p-7 reveal"><h3 class="font-bold text-xl mb-4">Yang harus dipertahankan</h3><ul class="space-y-2 text-text-secondary"><li>- Siluet tegas dan maskulin.</li><li>- Warna netral: black, charcoal, olive, khaki.</li><li>- Branding kecil dan subtle.</li><li>- Foto produk editorial-clean.</li></ul></div>
-        <div class="card p-7 reveal"><h3 class="font-bold text-xl mb-4">Yang harus dipangkas</h3><ul class="space-y-2 text-text-secondary"><li>- Terlalu banyak panel dan jahitan dekoratif.</li><li>- Aksen metal atau hardware berlebihan.</li><li>- Pattern yang rumit dan boros bahan.</li><li>- SKU warna terlalu banyak di awal.</li></ul></div>
-      </div>
-      <div class="mt-6 card p-6 reveal"><span class="font-bold">Rule sederhana:</span> kurangi kompleksitas produksi, tapi jangan kurangi attitude visual.</div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="8">
-    <div class="gradient-mesh"><div class="blob" style="width:350px;height:350px;top:10%;left:-50px;background:#14B8A6;opacity:.08"></div><div class="blob" style="width:280px;height:280px;bottom:-70px;right:-40px;background:#F97316;opacity:.07"></div></div>
-    <div class="deco-shape" data-speed="0.05" style="width:120px;height:120px;top:18%;left:12%;background:#F97316"></div>
-    <div class="deco-shape" data-speed="0.03" style="width:180px;height:180px;bottom:16%;right:12%;background:#14B8A6"></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Material & cost</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Bahan, puring, dan estimasi produksi</h2>
-      <div class="grid grid-cols-3 gap-6">
-        <div class="card p-6 reveal"><h3 class="font-bold text-xl mb-3">Bahan utama: parasut ringan</h3><p class="tiny text-text-secondary">Pilih parasut atau taslan ringan yang feel-nya seperti parasut mukena, supaya jatuh, ringan, dan mudah dipakai harian. Harga referensi bahan parasut jaket di marketplace ada dari sekitar Rp17 ribu sampai Rp41,9 ribu per meter.</p></div>
-        <div class="card p-6 reveal"><h3 class="font-bold text-xl mb-3">Puring: jaring / mesh</h3><p class="tiny text-text-secondary">Puring jaring cocok buat bikin jaket lebih adem dan tetap punya feel semi-teknikal. Harga referensi kain jaring furing jaket sekitar Rp17.250 sampai Rp20 ribu per meter, dengan opsi lebih murah sekitar Rp12 ribu untuk kain jala tertentu.</p></div>
-        <div class="card p-6 reveal"><h3 class="font-bold text-xl mb-3">Arah konstruksi</h3><p class="tiny text-text-secondary">Pakai body parasut ringan, lining mesh di body utama, zipper nylon, manset simple, dan pocket secukupnya. Ini bikin look tetap clean tapi HPP masih kejaga.</p></div>
-      </div>
-      <div class="grid grid-cols-2 gap-6 mt-6">
-        <div class="card p-6 reveal"><h3 class="font-bold text-xl mb-4">Estimasi modal produksi per pcs</h3><ul class="space-y-2 text-text-secondary tiny"><li>- Bahan luar 1.6 m x Rp20–35 ribu = Rp32–56 ribu.</li><li>- Puring jaring 1.3 m x Rp12–20 ribu = Rp16–26 ribu.</li><li>- Zipper, benang, label, aksesoris = Rp12–20 ribu.</li><li>- CMT / jahit = Rp45–70 ribu.</li><li>- QC, packing, cadangan = Rp10–15 ribu.</li><li>- Estimasi HPP total = sekitar Rp115–187 ribu per pcs.</li></ul></div>
-        <div class="card p-6 reveal"><h3 class="font-bold text-xl mb-4">Estimasi modal batch awal</h3><ul class="space-y-2 text-text-secondary tiny"><li>- 50 pcs x HPP Rp115–187 ribu = Rp5,75–9,35 juta.</li><li>- Foto produk sederhana = Rp500 ribu–1,5 juta.</li><li>- Packaging dan size tag awal = Rp300 ribu–700 ribu.</li><li>- Buffer revisi sample = Rp500 ribu–1 juta.</li><li>- Total modal awal realistis = sekitar Rp7–12,5 juta.</li></ul></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="9">
-    <div class="gradient-mesh"><div class="blob" style="width:340px;height:340px;top:-60px;right:-60px;background:#F97316;opacity:.08"></div><div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#14B8A6;opacity:.08"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Ads budget</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Estimasi marketing & Shopee Ads</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div class="card p-7 reveal"><h3 class="font-bold text-xl mb-4">Budget iklan awal</h3><ul class="space-y-2 text-text-secondary"><li>- Shopee Ads memakai model bayar saat iklan diklik.</li><li>- Shopee menyebut modal harian minimum Rp25 ribu untuk Iklan Produk Individu dan Iklan Toko, serta merekomendasikan menyiapkan sekitar Rp50 ribu per produk yang diiklankan.</li><li>- Referensi lain untuk fashion menunjukkan budget awal Rp50 ribu–Rp100 ribu per produk per hari, dengan CPC sekitar Rp500–Rp1.200.</li></ul></div>
-        <div class="card p-7 reveal"><h3 class="font-bold text-xl mb-4">Skenario aman 30 hari</h3><ul class="space-y-2 text-text-secondary"><li>- 1 hero product dulu.</li><li>- Ads testing Rp50 ribu/hari x 30 hari = Rp1,5 juta.</li><li>- Konten tambahan / boosting video = Rp500 ribu–1 juta.</li><li>- Seed review / ongkos kirim tak terduga = Rp300 ribu–700 ribu.</li><li>- Total budget marketing awal = sekitar Rp2,3–3,2 juta.</li></ul></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="13">
-    <div class="gradient-mesh"><div class="blob" style="width:340px;height:340px;top:-60px;right:-60px;background:#F97316;opacity:.08"></div><div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#14B8A6;opacity:.08"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Channel</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Strategi Shopee di fase awal</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div class="card p-7 reveal"><h3 class="font-bold text-xl mb-4">Listing harus menjual image</h3><ul class="space-y-2 text-text-secondary"><li>- Thumbnail clean, model photo, warna netral.</li><li>- Judul fokus pada style + fungsi + warna.</li><li>- Deskripsi singkat, tidak terlalu puitis.</li><li>- Variasi warna dan size jelas.</li></ul></div>
-        <div class="card p-7 reveal"><h3 class="font-bold text-xl mb-4">Promo harus hati-hati</h3><ul class="space-y-2 text-text-secondary"><li>- Voucher toko untuk trigger checkout.</li><li>- Jangan terlalu sering markdown besar.</li><li>- Bangun review awal dari produk hero.</li><li>- Dorong video produk dan foto detail bahan.</li></ul></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="10">
-    <div class="gradient-mesh"><div class="blob" style="width:330px;height:330px;top:0;left:-40px;background:#14B8A6;opacity:.08"></div><div class="blob" style="width:280px;height:280px;bottom:-50px;right:-30px;background:#FEF3C7;opacity:.07"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Visual strategy</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">Konten yang bikin harga terasa pantas</h2>
-      <div class="grid grid-cols-3 gap-6">
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">📸</div><h3 class="font-bold text-xl mb-2">Photo set</h3><p class="tiny text-text-secondary">1 foto front, 1 side, 1 close-up bahan, 1 detail zipper, 1 on-body full look, 1 size chart jelas.</p></div>
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">🎞️</div><h3 class="font-bold text-xl mb-2">Short video</h3><p class="tiny text-text-secondary">10–20 detik, fokus ke gerak bahan, detail pocket, dan siluet saat dipakai.</p></div>
-        <div class="card p-6 reveal"><div class="text-4xl mb-4">🧾</div><h3 class="font-bold text-xl mb-2">Copy angle</h3><p class="tiny text-text-secondary">Tekankan versatile, clean look, easy styling, dan rasa premium, bukan jargon teknis yang berlebihan.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="11">
-    <div class="gradient-mesh"><div class="blob" style="width:330px;height:330px;top:-80px;right:5%;background:#F97316;opacity:.08"></div><div class="blob" style="width:240px;height:240px;bottom:-40px;left:0;background:#14B8A6;opacity:.08"></div></div>
-    <div class="content">
-      <p class="uppercase tracking-[5px] text-text-muted mb-3 reveal">Go to market</p>
-      <h2 class="font-display text-[clamp(2.1rem,4vw,3.2rem)] mb-8 reveal">90 hari pertama</h2>
-      <div class="grid grid-cols-4 gap-5">
-        <div class="card p-5 reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Hari 1–14</div><div class="font-bold text-lg mb-2">Riset & sample</div><p class="tiny text-text-secondary">Finalize model, bahan, size chart, dan sample hero product.</p></div>
-        <div class="card p-5 reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Hari 15–30</div><div class="font-bold text-lg mb-2">Foto & setup</div><p class="tiny text-text-secondary">Siapkan foto, video, copywriting, dan struktur toko Shopee.</p></div>
-        <div class="card p-5 reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Hari 31–60</div><div class="font-bold text-lg mb-2">Soft launch</div><p class="tiny text-text-secondary">Jual hero product, kumpulkan review, optimasi thumbnail dan harga.</p></div>
-        <div class="card p-5 reveal"><div class="text-sm uppercase tracking-[4px] text-text-muted mb-2">Hari 61–90</div><div class="font-bold text-lg mb-2">Scale SKU</div><p class="tiny text-text-secondary">Tambah warna atau model kedua hanya jika hero sudah valid.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide" data-slide="12">
-    <div class="gradient-mesh"><div class="blob" style="width:420px;height:420px;top:-120px;right:-90px;background:#F97316;opacity:.13"></div><div class="blob" style="width:300px;height:300px;bottom:-70px;left:-60px;background:#14B8A6;opacity:.1"></div><div class="blob" style="width:220px;height:220px;top:45%;left:15%;background:#FEF3C7;opacity:.08"></div></div>
-    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1"></canvas>
-    <div class="content text-center">
-      <div class="text-[100px] mb-4 animate-[float_3s_ease-in-out_infinite] reveal">🚀</div>
-      <h2 class="font-display text-[clamp(2.6rem,5vw,4.5rem)] leading-none mb-5 bg-linear-to-br from-accent-1 via-accent-2 to-accent-3 bg-clip-text text-transparent reveal">Arah eksekusi</h2>
-      <p class="text-xl text-text-secondary max-w-[760px] mx-auto reveal">Mulai dari satu hero outerwear, bangun persepsi premium, lalu scale secara disiplin. Menang bukan karena paling murah, tapi karena paling enak dilihat dan paling masuk akal dibeli.</p>
-    </div>
-  </div>
-</div>
-
-<div class="nav-controls">
-  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
-  <div class="slide-dots" id="dots"></div>
-  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-  <span class="slide-counter" id="counter">1 / 13</span>
-</div>
-
-<script>
-let current = 1;
-const total = document.querySelectorAll('.slide').length;
-const dotsContainer = document.getElementById('dots');
-const counter = document.getElementById('counter');
-for (let i = 1; i <= total; i++) { const dot = document.createElement('div'); dot.className = 'dot' + (i === 1 ? ' active' : ''); dot.onclick = () => goToSlide(i); dotsContainer.appendChild(dot); }
-function goToSlide(n) { const prev = document.querySelector('.slide.active'); const next = document.querySelector(`.slide[data-slide="${n}"]`); if (prev) prev.classList.remove('active'); if (next) { next.classList.add('active'); animateSlide(next); } current = n; updateNav(); }
-function changeSlide(dir) { let next = current + dir; if (next < 1) next = total; if (next > total) next = 1; goToSlide(next); }
-function updateNav() { document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current)); counter.textContent = current + ' / ' + total; }
-document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
-let touchStartX = 0;
-document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
-function animateSlide(slide) {
-  slide.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transition = 'none'; el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.offsetHeight;
-    const delay = i * 0.08; el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`; el.style.opacity = '1'; el.style.transform = 'translateY(0px)';
-  });
-}
-document.addEventListener('mousemove', (e) => {
-  const spotlight = document.querySelector('.mouse-spotlight');
-  if (spotlight) spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(249,115,22,0.06), transparent 40%)`;
-});
-(function() {
-  let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-  const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-  document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-  (function tick() {
-    const ox = (mouseX - cx) / cx, oy = (mouseY - cy) / cy;
-    document.querySelectorAll('.deco-shape').forEach(shape => {
-      const speed = parseFloat(shape.dataset.speed) || 0.03;
-      shape.style.transform = `translate(${ox * speed * 100}px, ${oy * speed * 100}px)`;
-    });
-    requestAnimationFrame(tick);
-  })();
-})();
-window.initParticles = function(canvas, options) {
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
-  const interactive = options.interactive !== false; const count = options.count || (interactive ? 55 : 18);
-  let mx = -1000, my = -1000;
-  const particles = Array.from({ length: count }, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, size: Math.random() * 2.5 + 0.8, alpha: Math.random() * 0.35 + 0.1 }));
-  if (interactive) {
-    canvas.addEventListener('mousemove', (e) => { const rect = canvas.getBoundingClientRect(); mx = e.clientX - rect.left; my = e.clientY - rect.top; });
-    canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
-  }
-  (function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 120 && dist > 0) { const force = (120 - dist) / 120 * 2; p.vx += (dx / dist) * force * 0.1; p.vy += (dy / dist) * force * 0.1; } }
-      p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0; if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(249,115,22,${p.alpha})`; ctx.fill();
-    });
-    requestAnimationFrame(animate);
-  })();
-};
-document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 55 }));
-document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 18 }));
-try { animateSlide(document.querySelector('.slide.active')); } catch(e) {}
-</script>
 </body>
 </html>
